@@ -1,42 +1,44 @@
-class MergeSort
+class MergeSorting
+
   def sort(numbers)
     if numbers.size <= 1
       return numbers
     end
 
-    array_size = numbers.size
-    half_of_size = (array_size / 2).round
+    size_of_array   = numbers.size
+    half_of_size = (size_of_array / 2).round
 
-    left_array = numbers.take(half_of_size)
-    right_array = numbers.take(half_of_size)
+    array_left  = numbers.take(half_of_size)
+    array_right = numbers.drop(half_of_size)
 
-    sorted_left_array = sort(left_array)
-    sorted_right_array = sort(right_array)
+    sorted_array_left = sort(array_left)
+    sorted_array_right = sort(array_right)
 
-    merge(sorted_left_array, sorted_right_array)
+    merge(sorted_array_left, sorted_array_right)
   end
 
 
-  def merge(left_array, right_array)
-    if right_array.empty?
-      return left_array
+  def merge(array_left, array_right)
+    if array_right.empty?
+      return array_left
     end
 
-    if left_array.empty?
-      return right_array
+    if array_left.empty?
+      return array_right
     end
 
-    smallest_number = if left_array.first <= right_array.first
-      left_array.shift
+    smallest = if array_left.first <= array_right.first
+      array_left.shift
     else
-      right_array.shift
+      array_right.shift
     end
 
-    recursive = merge(left_array, right_array)
 
-    [smallest_number].concat(recursive)
+    recursive = merge(array_left, array_right)
+
+    [smallest].concat(recursive)
   end
 end
 
-merge_sort = MergeSort.new
-puts merge_sort.sort([4, 92, 1, 39, 19, 93, 49, 10].shuffle)
+merge_sort = MergeSorting.new
+puts merge_sort.sort([33, 90, 3, 44, 86, 22, 67, 101].shuffle)
