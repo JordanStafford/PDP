@@ -1,24 +1,15 @@
-#find the mid point of the array
-#compare the  mid point with the value being searched
-#if the mid point is lower than the value, search the upper half of the array
-#find the new mid point until there is only two values to compare
-#if the mid point is higher than the value, search the lower half of the array
-#find the new mid point until there is only two values to compare
 
 array = [1,2,3,4,5,6,7,8,9,10]
 value = 4
 
 def binary_search(array, value)
   while !@found do
-    size = array.length
-    puts "Size is #{size}"
-    midpoint = array.slice(size / 2)
-    puts "Midpoint is #{midpoint}"
-    midpoint_index = array.find_index(midpoint)
+    working_out_size_of_array_and_midpoint(array)
+    midpoint_index = array.find_index(@midpoint)
     puts "Midpoint index is #{midpoint_index}"
-    if midpoint == value
+    if @midpoint == value
       puts "#{value} found"
-    elsif midpoint < value
+    elsif @midpoint < value
       puts "Midpoint is lower than value"
       n = midpoint_index+1
       array = array[n..array.size]
@@ -29,7 +20,7 @@ def binary_search(array, value)
         midpoint = array.slice(size / 2)
         # deal with slicing the array further until it's size of 2
       end
-    elsif midpoint > value
+    elsif @midpoint > value
       puts "Midpoint is higher than value"
       n = midpoint_index-1
       array = array[0..n]
@@ -52,13 +43,11 @@ def search_for_result(array, value)
   end
 end
 
-def get_midpoint_value(array)
-end
-
-def get_higher_array(array)
-end
-
-def get_lower_array(array)
+def working_out_size_of_array_and_midpoint(array)
+  @size = array.length
+  puts "Size is #{@size}"
+  @midpoint = array.slice(@size / 2)
+  puts "Midpoint is #{@midpoint}"
 end
 
 # while !binary_search(array, value)
