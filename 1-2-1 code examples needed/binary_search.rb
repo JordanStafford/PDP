@@ -9,33 +9,33 @@ array = [1,2,3,4,5,6,7,8,9,10]
 value = 4
 
 def binary_search(array, value)
-  size = array.length
-  puts "Size is #{size}"
-  midpoint = array.slice(size / 2)
-  puts "Midpoint is #{midpoint}"
-  midpoint_index = array.find_index(midpoint)
-  puts "Midpoint index is #{midpoint_index}"
-  if midpoint == value
-    puts "#{value} found"
-  elsif midpoint < value
-    puts "Midpoint is lower than value"
-    n = midpoint_index+1
-    higher_array = array[n..array.size]
-    if higher_array.size == 2
-      puts "Array size is 2"
-      search_for_result(higher_array, value)
-    else
-      midpoint = higher_array.slice(size / 2)
-      # deal with slicing the array further until it's size of 2
-    end
-  elsif midpoint > value
-    puts "Midpoint is higher than value"
-    n = midpoint_index-1
-    lower_array = array[0..n]
-    if lower_array.size == 2
-      search_for_result(lower_array, value)
-      # FOO
-      fopihio
+  while !@found do
+    size = array.length
+    puts "Size is #{size}"
+    midpoint = array.slice(size / 2)
+    puts "Midpoint is #{midpoint}"
+    midpoint_index = array.find_index(midpoint)
+    puts "Midpoint index is #{midpoint_index}"
+    if midpoint == value
+      puts "#{value} found"
+    elsif midpoint < value
+      puts "Midpoint is lower than value"
+      n = midpoint_index+1
+      array = array[n..array.size]
+      if array.size == 2
+        puts "Array size is 2"
+        search_for_result(array, value)
+      else
+        midpoint = array.slice(size / 2)
+        # deal with slicing the array further until it's size of 2
+      end
+    elsif midpoint > value
+      puts "Midpoint is higher than value"
+      n = midpoint_index-1
+      array = array[0..n]
+      if array.size == 2
+        search_for_result(array, value)
+      end
     end
   end
 end
@@ -48,6 +48,7 @@ def search_for_result(array, value)
     puts "value not found"
   else
     puts "#{value} found"
+    @found = true
   end
 end
 
@@ -60,4 +61,6 @@ end
 def get_lower_array(array)
 end
 
-binary_search(array, value)
+# while !binary_search(array, value)
+  binary_search(array, value)
+# end
