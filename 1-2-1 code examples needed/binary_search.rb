@@ -11,8 +11,9 @@ def binary_search(array, value)
       puts "#{value} found"
     elsif @midpoint < value
       puts "Midpoint is lower than value"
-      n = midpoint_index+1
-      array = array[n..array.size]
+      array_n(array)
+      #n = midpoint_index+1
+      #array = array[n..array.size]
       if array.size == 2
         puts "Array size is 2"
         search_for_result(array, value)
@@ -53,3 +54,8 @@ end
 # while !binary_search(array, value)
   binary_search(array, value)
 # end
+
+def array_n(array)
+  n = midpoint_index+1
+  array = array[n..array.size]
+end
